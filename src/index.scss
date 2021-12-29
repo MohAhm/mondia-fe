@@ -1,0 +1,124 @@
+@import "normalize.css";
+@import "antd/dist/antd.css";
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2)
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v15/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2)
+    format("woff2");
+}
+
+:root {
+  --white: #fff;
+  --color--headings: #25323d;
+  --color--text: #696969;
+  --color--background: #faf8fd;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: var(--color--text);
+  background-color: var(--color--background);
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color--headings);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 4.8rem;
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: 3.2rem;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color--primary);
+}
+
+// Tables
+
+.data_row {
+  &__table {
+    box-shadow: none;
+    border-radius: 0;
+
+    tr > th {
+      color: var(--color--headings);
+      background: var(--white);
+      border-bottom: none;
+
+      &:first-child {
+        padding-left: 25px;
+      }
+    }
+
+    tr > td {
+      color: var(--color--text);
+      border-bottom: none;
+
+      &:first-child {
+        padding-left: 25px;
+      }
+    }
+
+    tr:nth-child(2n + 1) td {
+      background-color: rgba(181, 186, 194, 0.1);
+    }
+
+    .ant-table .ant-table-tbody > tr:hover > td {
+      background-color: rgba(181, 186, 194, 0.3);
+    }
+
+    &-icon {
+      vertical-align: text-top;
+      cursor: pointer;
+    }
+  }
+}
