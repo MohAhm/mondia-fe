@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getTasks } from '../../api/tasks'
 
-export default function Tasks() {
+export default function TasksTable() {
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {

@@ -20,8 +20,6 @@ export default function EmployeeModal({
   const { name, joinDate, skills } = inputs
   const [ form ] = Form.useForm()
 
-  console.log(joinDate)
-
   const resetValues = useCallback(
 		() => {
 			setInputs(employee)

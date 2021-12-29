@@ -122,3 +122,11 @@ a {
     }
   }
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 25px 25px 0;
+}

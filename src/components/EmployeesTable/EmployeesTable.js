@@ -5,24 +5,24 @@ import EmployeesDataRow from './EmployeesDataRow'
 export default function EmployeesTable() {
   const [employees, setEmployees] = useState([])
 
-  useEffect(() => {
-    getEmployees()
-      .then(setEmployees)
-  }, [])
-
-  const handleTableRefetch = useCallback(
-		() => {
+  const fetch = useCallback(
+    () => {
       getEmployees()
         .then(setEmployees)
-		}, []
-	)
+    }, []
+  )
+
+  useEffect(() => {
+    fetch()
+  }, [fetch])
+
 
   return (
     <div className='employees'>
-      <h3>Employees</h3>
+      <h3 className='header'>Employees</h3>
       <EmployeesDataRow 
         employees={employees} 
-        onRefetch={handleTableRefetch}
+        onRefetch={fetch}
       />
     </div>
   )

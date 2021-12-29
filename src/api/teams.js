@@ -11,6 +11,17 @@ export function getTeams() {
     .then((res) => res.json())
 }
 
+export function deleteTeam(id) {
+  return fetch(`${BASE_URL}/teams/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json'
+    },
+  })
+    .then((res) => res.json())
+}
+
 export function getTeam(id) {
   return fetch(`${BASE_URL}/teams/${id}`, {
     method: 'GET',

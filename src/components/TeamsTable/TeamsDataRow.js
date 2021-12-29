@@ -1,44 +1,36 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import Table from 'antd/es/table'
 import { AiFillEdit, AiFillDelete } from "react-icons/ai"
 
-import { getTeam } from '../../api/teams'
 import { DATE_FORMAT, toLocalDate } from '../../utils/constants'
-import { deleteEmployee } from '../../api/employees'
 import DeleteModal from '../DeleteModal'
-import EmployeeModal from './EmployeeModal'
+import { deleteTeam } from '../../api/teams'
 
-export default function EmployeesDataRow({ employees, onRefetch }) {
+export default function TeamsDataRow({ teams, onRefetch }) {
   const [hasDModalOpened, setHasDModalOpened] = useState(false)
   const [hasCRModalOpened, setHasCRModalOpened] = useState(false)
-  const [employee, setEmployee] = useState({})
+  const [team, setTeam] = useState({})
 
   const handleDelete = useCallback(
-		(employee) => {
+		(team) => {
       setHasDModalOpened(true)
-      setEmployee(employee)
+      setTeam(team)
 		}, []
 	)
 
   const handleChange = useCallback(
-    (employee) => {
+    (team) => {
       setHasCRModalOpened(true)
-      setEmployee(employee)
+      setTeam(team)
     }, [],
   )
 
   return (
     <div className='data_row'>
-      <EmployeeModal 
-        employee={employee}
-        hasModalOpened={hasCRModalOpened}
-        setHasModalOpened={setHasCRModalOpened}
-      />
-
       <DeleteModal 
-        dataRow={employee}
-        text='Are you sure to delete the employee'
-        deleteRow={deleteEmployee}
+        dataRow={team}
+        text='Are you sure to delete the team'
+        deleteRow={deleteTeam}
         onRefetch={onRefetch}
         hasModalOpened={hasDModalOpened}
         setHasModalOpened={setHasDModalOpened}
@@ -53,21 +45,14 @@ export default function EmployeesDataRow({ employees, onRefetch }) {
             dataIndex: 'name',
           },
           {
-            title: 'Team',
-            dataIndex: 'teamCode',
-            render: (teamCode) => {
-              return <TeamRow id={teamCode}/>
-            }
+            title: 'Start Date',
+            dataIndex: 'startDate',
+            render: (startDate) => toLocalDate(startDate).format(DATE_FORMAT)
           },
           {
-            title: 'Join Date',
-            dataIndex: 'joinDate',
-            render: (joinDate) => toLocalDate(joinDate).format(DATE_FORMAT)
-          },
-          {
-            title: 'Skills',
-            dataIndex: 'skills',
-            render: (skills) => skills.join(', ')
+            title: 'End Date',
+            dataIndex: 'endDate',
+            render: (endDate) => toLocalDate(endDate).format(DATE_FORMAT)
           },
           {
             title: 'Edit',
@@ -90,21 +75,10 @@ export default function EmployeesDataRow({ employees, onRefetch }) {
             )
           }
         ]}
-        dataSource={employees}
+        dataSource={teams}
         pagination={false}
       />
     </div>
   )
 }
 
-function TeamRow({ id }) {
-  const [name, setName] = useState('')
-
-  useEffect(() => {
-    getTeam(id)
-      .then(({ name }) => setName(name))
-      .catch(() => setName('N/A'))
-  }, [id])
-
-  return <span>{name}</span>
-}
