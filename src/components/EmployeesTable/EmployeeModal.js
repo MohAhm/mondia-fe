@@ -81,7 +81,6 @@ export default function EmployeeModal({
           <Button
             label={isNewEmployee ? 'Add a New Employee' : 'Save'}
             type="submit"
-            // disabled={body.trim() === ''}
           />
         </Form.Item>
       </Form>

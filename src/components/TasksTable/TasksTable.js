@@ -1,19 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { getTasks } from '../../api/tasks'
+import TasksDataRow from './TasksDataRow'
 
 export default function TasksTable() {
   const [tasks, setTasks] = useState([])
 
-  useEffect(() => {
-    getTasks()
-      .then(setTasks)
-  }, [])
+  const fetch = useCallback(
+    () => {
+      getTasks()
+        .then(setTasks)
+    }, []
+  )
 
-  console.log(tasks)
+  useEffect(() => {
+    fetch()
+  }, [fetch])
 
   return (
     <div>
-      <h1>Test Tasks API</h1>
+      <h3 className='header'>Tasks</h3>
+      <TasksDataRow 
+        tasks={tasks} 
+        onRefetch={fetch}
+      />
     </div>
   )
 }

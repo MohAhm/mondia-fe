@@ -22,12 +22,11 @@ export default function App() {
         </Layout.Sider>
         <Layout>
           <Layout.Content>
-            {/* <Navigate from="/" exact to="/teams" /> */}
             <Routes>
-              <Route path='/teams' element={<TeamsTable />} />
               <Route path='/employees' element={<EmployeesTable />} />
+              <Route path='/teams' element={<TeamsTable />} />
               <Route path='/tasks' element={<TasksTable />} />
-              <Route path='*' element={<TeamsTable />} />
+              <Route path="*" element={<Navigate to="/employees" />} />
             </Routes>
           </Layout.Content>
         </Layout>
